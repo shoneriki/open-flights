@@ -1,6 +1,7 @@
 module Api
   module V1
     class ReviewsController < ApplicationController
+      protect_from_forgery with: :null_session
 
       def create
         review = Review.new(review_params)
@@ -13,7 +14,7 @@ module Api
       end
 
 
-      def create
+      def destroy
         review = Review.find(params[:id])
 
         if review.destroy
@@ -26,7 +27,7 @@ module Api
       private
 
       def review_params
-        params.require(:review).permit(:title, :description, :score, :airline)id
+        params.require(:review).permit(:title, :description, :score, :airline_id)
       end
 
     end
