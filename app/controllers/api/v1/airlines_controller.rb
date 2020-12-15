@@ -39,7 +39,7 @@ module Api
         if airline.destroy
           head :no_content
         else
-          render json: { error: airline.errors.messages }, status: :422
+          render json: { error: airline.errors.messages }, status: 422
         end
       end
 
