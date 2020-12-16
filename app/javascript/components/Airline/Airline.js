@@ -40,8 +40,31 @@ const Airline = (props) => {
     })
     .catch( resp => console.log(resp) )
   }, [])
-  // error in axops was actually in how it's const[] not {}
+  // error in axios was actually in how it's const[] not {} (-8 lines )
 
+  const handleChange = (e) => {
+    e.preventDefault()
+
+    setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+
+    console.log('review', review)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+    const airline_id = airline.data.id
+    axios.post('/api/v1/reviews', {review, airline_id})
+    .then(resp => {
+      debugger
+    })
+    .catch(resp => {
+
+    })
+  }
 
   return (
     <Wrapper>
@@ -58,7 +81,12 @@ const Airline = (props) => {
           </Main>
         </Column>
         <Column>
-          <ReviewForm/>
+          <ReviewForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            attributes={airline.data.attributes}
+            review={review}
+          />
         </Column>
       </Fragment>
       }
