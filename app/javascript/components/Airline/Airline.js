@@ -23,10 +23,9 @@ const Main = styled.div`
   left-padding: 50px;
 `
 
-
 const Airline = (props) => {
-  const {airline, setAirline} = useState({})
-  const {review, setReview} = useState({})
+  const [airline, setAirline] = useState({})
+  const [review, setReview] = useState([])
   const [loaded, setLoaded] = useState(false)
 
   useEffect(()=>{
@@ -34,13 +33,13 @@ const Airline = (props) => {
     const url = `/api/v1/airlines/${slug}`
 
     axios.get(url)
-    .then( resp => {
+    .then( (resp) => {
       setAirline(resp.data)
       setLoaded(true)
     })
     .catch( resp => console.log(resp) )
   }, [])
-  // error in line 16/19 was actually in ____
+  // error in axops was actually in how it's const[] not {}
 
 
   return (
