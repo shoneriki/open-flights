@@ -42,7 +42,56 @@ const RatingBox = styled.div`
     background-image:url("data:image/svg+xml;charset=UTF-8,${Hover}");
   }
 `
-const RatingTitle = styled.div``
+const Field = styled.div`
+  border-radius: 4px;
+
+  input {
+    min-height: 50px;
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    margin: 12px 0;
+    padding: 12px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    margin: 12px 0;
+    padding: 12px;
+  }
+`
+const Wrapper= styled.div`
+  background: #fff;
+  padding: 20px;
+`
+const SubmitBtn = styled.button`
+  color: #fff;
+  background: #333;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+  border: 1px solid #333;
+
+  &:hover {
+    background: #fff;
+    color: #333;
+    border: 1px solid #fff;
+  }
+`
+const Headline = styled.div`
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+`
+const RatingTitle = styled.div`
+  font-size: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+`
 
 const ReviewForm = (props) => {
   const ratingOptions = [5,4,3,2,1].map( (score, index) => {
@@ -54,26 +103,26 @@ const ReviewForm = (props) => {
     )
   })
   return (
-  <div className="wrapper">
+  <Wrapper>
     <form onSubmit={props.handleSubmit}>
-      <div>Have an experience with {props.attributes.name}? Share your review!</div>
-      <div className="field">
+      <Headline>Have an experience with {props.attributes.name}? Share your review!</Headline>
+      <Field>
         <input onChange={props.handleChange} value={props.review.title} type="text" name="title" placeholder="Review Title"/>
-      </div>
-      <div className="field">
+      </Field>
+      <Field>
         <input onChange={props.handleChange} value={props.review.description} type="text" name="description" placeholder="Review Description"/>
-      </div>
-      <div className="field">
+      </Field>
+      <Field>
         <RatingContainer>
-          <div className="rating-title-text">Rate This Airline</div>
+          <RatingTitle className="rating-title-text">Rate This Airline</RatingTitle>
           <RatingBox>
           {ratingOptions}
           </RatingBox>
         </RatingContainer>
-      </div>
-      <button type="submit">Submit Your Review</button>
+      </Field>
+      <SubmitBtn type="submit">Submit Your Review</SubmitBtn>
     </form>
-  </div>
+  </Wrapper>
   )
 }
 
