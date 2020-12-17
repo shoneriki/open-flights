@@ -51,16 +51,18 @@ const Airline = (props) => {
     console.log('review', review)
   }
 
+  // Submit/Create new review
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
+    //Get airline id
     const airline_id = airline.data.id
     axios.post('/api/v1/reviews', {review, airline_id})
     .then(resp => {
-      const included = [...airline.included, resp.data]
+      const included = [...airline.included, resp.data.data]
       setAirline({...airline,included})
       setReview({title: '', description: '', score: 0})
     })
@@ -68,6 +70,7 @@ const Airline = (props) => {
     })
   }
 
+  // set score
   const setRating = (score, e) => {
     e.preventDefault()
 
