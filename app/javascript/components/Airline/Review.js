@@ -5,7 +5,7 @@ const Card = styled.div`
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   padding: 20px;
-  margin: 0 0 20px 0;
+  margin: 0 20px 20px 0;
 `
 const RatingContainer = styled.div``
 const RatingScore = styled.div``
