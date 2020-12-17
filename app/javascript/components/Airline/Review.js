@@ -9,8 +9,15 @@ const Card = styled.div`
 `
 const RatingContainer = styled.div``
 const RatingScore = styled.div``
-const Title = styled.div``
-const Description = styled.div``
+const Title = styled.div`
+  padding: 20px 0 0 0;
+  font-size: 18px;
+
+`
+const Description = styled.div`
+  padding: 0 0 20px 0;
+  font-size: 14px;
+`
 
 const Review = (props) => {
   const {score, title, description} = props.attributes
@@ -20,8 +27,8 @@ const Review = (props) => {
       <div className="rating-container">
         <div className="rating-score">{score}</div>
       </div>
-      <div className="title">{title}</div>
-      <div className="description">{description}</div>
+      <Title>{title}</Title>
+      <Description>{description}</Description>
     </Card>
   )
 }
